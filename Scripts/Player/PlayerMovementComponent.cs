@@ -62,8 +62,6 @@ namespace Player
             {
                 IsEnemy();
             }
-
-            //IsEnemy();
         }
 
         private void FixedUpdate()
@@ -86,7 +84,7 @@ namespace Player
                 Vector2.down,
                 _rayDistance,
                 _groundLayerMask);
-            //Debug.DrawLine(transform.position, hit.point);
+
             if (hit.collider)
             {
                 return true;
@@ -101,7 +99,7 @@ namespace Player
                 _enemyDetected,
                 _rayDistance,
                 _enemyLayerMask);
-            //Debug.DrawLine(transform.position, hit.point);
+                
             if (hit.collider)
             {
                 Destroy(hit.collider.gameObject, .7f);
@@ -109,30 +107,7 @@ namespace Player
             }
             return false;
         }
-        
-        
-
-        
-
-        /*private void ShowDamageDealt(int damage, GameObject source)
-        {
-            Debug.Log($"Dealt {damage} damage to {source.name}");
-        }
-
-        private void CheckDeath(int damage, GameObject source)
-        {
-            if (_damageHandler.IsDead())
-            {
-                Debug.Log("Dead!");
-            }
-        }
-
-        private void ShowDamageMessage(int damage, GameObject source)
-        {
-            string sourceName = source ? source.name : "unknow";
-            Debug.Log($"Took {damage} damage from {sourceName}! Health: {_damageHandler.CurrentrHealth}");
-        }*/
-        
     }
 }
+
 
