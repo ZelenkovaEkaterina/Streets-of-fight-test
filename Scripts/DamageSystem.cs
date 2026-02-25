@@ -7,7 +7,6 @@
      bool IsDead();
      int CurrentrHealth { get; }
      int MaxHealth {get;}
-     
  }
 
  public interface IDamageDiller
@@ -43,7 +42,6 @@
          //currentHealth -= Mathf.Max(0,currentHealth - damage);
          currentHealth -= damage;
          OnDamageTaken?.Invoke(damage, source); 
-         
      }
 
      public bool IsDead()
@@ -52,3 +50,4 @@
      }
  }
  
+
