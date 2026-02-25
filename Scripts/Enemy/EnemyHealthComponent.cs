@@ -4,16 +4,15 @@ using UnityEngine;
 
 public class EnemyHealthComponent : MonoBehaviour
 {
-    private IDamageble _damageble;
+    public IDamageble _damagebleEnemy;
 
     private void Awake()
     {
-        _damageble = GetComponent<IDamageble>();
+        _damagebleEnemy = GetComponent<IDamageble>();
     }
 
-    private void Start()
-    {
-        if (_damageble is DamageSystem handler)
+    private void Start(){
+        if (_damagebleEnemy is DamageSystem handler)
         {
             handler.OnDamageTaken += (damage, source) =>
             {
@@ -25,17 +24,9 @@ public class EnemyHealthComponent : MonoBehaviour
                 if (handler.IsDead())
                 {
                     Debug.Log("Умер");
+                    Destroy(this.gameObject);
                 }
             };
-        }
-    }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.R) || 
-            Input.GetKeyDown(KeyCode.T) || Input.GetKeyDown(KeyCode.Y))
-        {
-            _damageble?.TakeDamage(10,null);
         }
     }
 }
