@@ -27,8 +27,8 @@ namespace Player
         private EnemyHealthComponent _enemyHealth;
         
 
-        private void Start()
-        {
+        /*private void Start(){
+        
              if (_damageble is DamageSystem handler)
              {
                  handler.OnDamageTaken += (damage, source) =>
@@ -41,11 +41,11 @@ namespace Player
                      if (handler.IsDead())
                      {
                          Debug.Log("Умер");
-                    
                      }
                  };
              }
-        }
+        
+        }*/
         
         private void Awake()
         {
@@ -79,14 +79,14 @@ namespace Player
                 //_damageble?.TakeDamage(10, null);
             }*/
 
-            if ((Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.R) || Input.GetKeyDown(KeyCode.T) ||
-                    Input.GetKeyDown(KeyCode.Y)) && IsEnemy())
-            {
+            //if ((Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.R) || Input.GetKeyDown(KeyCode.T) ||
+            //        Input.GetKeyDown(KeyCode.Y)) && IsEnemy())
+            //{
                 //IsEnemy();
                 //_weapon.Attack(null);
                 //Debug.Log(null);
-                _damageble?.TakeDamage(10, null);
-            }
+                //_damageble?.TakeDamage(10, null);
+            //}
         }
 
         private void FixedUpdate()
@@ -116,7 +116,7 @@ namespace Player
             }
             return false;
         }
-        private bool IsEnemy()
+        /*private bool IsEnemy()
         {
             RaycastHit2D hit = Physics2D.Raycast(
                 transform.position,
@@ -130,7 +130,7 @@ namespace Player
                 return true;
             }
             return false;
-        }
+        }*/
     }
 }
 
