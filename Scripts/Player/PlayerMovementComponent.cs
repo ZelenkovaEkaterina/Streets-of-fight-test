@@ -24,12 +24,34 @@ namespace Player
 
         private IDamageble _damageble;
         private Weapon _weapon;
+        private EnemyHealthComponent _enemyHealth;
         
 
+        private void Start()
+        {
+             if (_damageble is DamageSystem handler)
+             {
+                 handler.OnDamageTaken += (damage, source) =>
+                 {
+                     Debug.Log($"Получен урон {damage}. Текущее здоровье {handler.CurrentrHealth}");
+                 };
+        
+                 handler.OnDamageTaken += (damage, source) =>
+                 {
+                     if (handler.IsDead())
+                     {
+                         Debug.Log("Умер");
+                    
+                     }
+                 };
+             }
+        }
+        
         private void Awake()
         {
             _rb = GetComponent<Rigidbody2D>();
             _damageble = GetComponent<IDamageble>();
+            _enemyHealth = GetComponent<EnemyHealthComponent>();
         }
     
         private void Update()
@@ -57,10 +79,13 @@ namespace Player
                 //_damageble?.TakeDamage(10, null);
             }*/
 
-            if (Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.R) || Input.GetKeyDown(KeyCode.T) ||
-                    Input.GetKeyDown(KeyCode.Y))
+            if ((Input.GetKeyDown(KeyCode.E) || Input.GetKeyDown(KeyCode.R) || Input.GetKeyDown(KeyCode.T) ||
+                    Input.GetKeyDown(KeyCode.Y)) && IsEnemy())
             {
-                IsEnemy();
+                //IsEnemy();
+                //_weapon.Attack(null);
+                //Debug.Log(null);
+                _damageble?.TakeDamage(10, null);
             }
         }
 
@@ -84,14 +109,13 @@ namespace Player
                 Vector2.down,
                 _rayDistance,
                 _groundLayerMask);
-
+                
             if (hit.collider)
             {
                 return true;
             }
             return false;
         }
-
         private bool IsEnemy()
         {
             RaycastHit2D hit = Physics2D.Raycast(
@@ -99,15 +123,14 @@ namespace Player
                 _enemyDetected,
                 _rayDistance,
                 _enemyLayerMask);
-                
+
             if (hit.collider)
             {
-                Destroy(hit.collider.gameObject, .7f);
+                //Destroy(hit.collider.gameObject, .7f);
                 return true;
             }
             return false;
         }
     }
 }
-
 
