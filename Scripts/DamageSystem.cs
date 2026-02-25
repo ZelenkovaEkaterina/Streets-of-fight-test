@@ -5,6 +5,8 @@
  {
      void TakeDamage(int damage, GameObject source);
      bool IsDead();
+     int CurrentrHealth { get; }
+     int MaxHealth {get;}
      
  }
 
@@ -38,7 +40,8 @@
      {
          if (IsDead()) return;
              
-         currentHealth -= Mathf.Max(0,currentHealth - damage);
+         //currentHealth -= Mathf.Max(0,currentHealth - damage);
+         currentHealth -= damage;
          OnDamageTaken?.Invoke(damage, source); 
          
      }
